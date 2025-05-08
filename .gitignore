@@ -1,1 +1,5 @@
 api/
+.env
+*.pyc
+token.json
+credentials.json
