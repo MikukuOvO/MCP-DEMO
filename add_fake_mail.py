@@ -35,4 +35,4 @@ def upload_eml_file(service, eml_path):
 
 if __name__ == '__main__':
     service = authenticate_gmail()
-    upload_eml_file(service, 'custom_mail.eml')
+    upload_eml_file(service, 'data/test.eml')

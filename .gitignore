@@ -1,4 +1,5 @@
 api/
+logs.
 .env
 *.pyc
 *.eml

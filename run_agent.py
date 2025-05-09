@@ -1,9 +1,10 @@
 """
 inbox_calendar_azure.py
-Convert the “Inbox & Calendar Assistant” runner to use Azure OpenAI.
+Convert the "Inbox & Calendar Assistant" runner to use Azure OpenAI.
 """
 
 import asyncio
+import json
 import os
 from contextlib import AsyncExitStack
 
@@ -30,7 +31,7 @@ AZURE_API_VERSION  = os.getenv("AZURE_OPENAI_API_VERSION", "2024-09-01-preview")
 # DEPLOYMENT_NAME    = "gpt-4o-20241120"
 DEPLOYMENT_NAME    = "o3-20250416"
 
-# AAD-based auth  (comment this block out if you’re using an API key)
+# AAD-based auth  (comment this block out if you're using an API key)
 token_provider = get_openai_token_provider()
 
 print(token_provider)
@@ -81,6 +82,43 @@ async def main() -> None:
             input=input("Ask about your email or calendar: ")
         )
         print(result.final_output)
+        
+        # Save responses to a file in a more readable format
+        with open("data/result.json", "w") as f:
+            # Format new_items for better readability
+            formatted_items = []
+            
+            for item in result.new_items:
+                item_type = item.type
+                
+                if item_type == 'tool_call_item':
+                    formatted_item = {
+                        "type": item_type,
+                        "tool_name": item.raw_item.name,
+                        "arguments": item.raw_item.arguments
+                    }
+                elif item_type == 'tool_call_output_item':
+                    formatted_item = {
+                        "type": item_type,
+                        "output": item.output
+                    }
+                elif item_type == 'message_output_item':
+                    formatted_item = {
+                        "type": item_type,
+                        "content": item.raw_item.content[0].text if item.raw_item.content else ""
+                    }
+                else:
+                    formatted_item = {"type": item_type}
+                
+                formatted_items.append(formatted_item)
+            
+            # Create the final JSON structure
+            json_data = {
+                "formatted_items": formatted_items,
+                "final_output": result.final_output
+            }
+            
+            json.dump(json_data, f, indent=2)
 
 # ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
