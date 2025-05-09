@@ -31,10 +31,10 @@ from mcp.server.fastmcp import FastMCP
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
-SCOPES = os.getenv(
-    "CALENDAR_SCOPES",
+SCOPES = [
     "https://www.googleapis.com/auth/calendar.readonly",
-).split(",")
+    "https://www.googleapis.com/auth/calendar.events",
+]
 TOKEN_FILE = os.getenv("CALENDAR_TOKEN_PATH", "token.json")
 DEFAULT_CALENDAR_ID = os.getenv("CALENDAR_ID", "primary")
 
@@ -155,6 +155,47 @@ def calendar_get_event(event_id: str, calendar_id: str = DEFAULT_CALENDAR_ID) ->
     )
     return info
 
+@mcp.tool(
+    name="calendar_create_event",
+    description=(
+        "Create a new Google Calendar event. "
+        "Required:  ▸ summary (str) ▸ start (ISO-8601 str | datetime) ▸ end (ISO-8601 str | datetime)\n"
+        "Optional:  description, location, attendees (list[str] e-mails), calendar_id."
+    ),
+)
+def calendar_create_event(
+    *,
+    summary: str,
+    start: str | datetime,
+    end: str | datetime,
+    description: Optional[str] = None,
+    location: Optional[str] = None,
+    attendees: Optional[List[str]] = None,
+    calendar_id: str = DEFAULT_CALENDAR_ID,
+) -> dict:
+    """
+    Insert a new event and return the API’s full response (includes the new event’s id).
+    Any datetime values are stored in UTC; use naive datetimes for “all-day” events.
+    """
+    body = {
+        "summary": summary,
+        "start": {"dateTime": _iso(start) if isinstance(start, datetime) else start},
+        "end":   {"dateTime": _iso(end)   if isinstance(end,   datetime) else end},
+    }
+
+    # Optional fields
+    if description:
+        body["description"] = description
+    if location:
+        body["location"] = location
+    if attendees:
+        body["attendees"] = [{"email": email} for email in attendees]
+
+    try:
+        evt = cal.events().insert(calendarId=calendar_id, body=body).execute()
+        return evt  # full metadata, including "id"
+    except HttpError as e:
+        return {"error": str(e)}
 
 # ---------------------------------------------------------------------------
 # CLI entry‑point

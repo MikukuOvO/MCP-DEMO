@@ -20,15 +20,15 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from mcp.server.fastmcp import FastMCP
-
+from email.message import EmailMessage
 
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
-SCOPES = os.getenv(
-    "GMAIL_SCOPES",
+SCOPES = [
     "https://www.googleapis.com/auth/gmail.readonly",
-).split(",")
+    "https://www.googleapis.com/auth/gmail.send",
+]
 TOKEN_FILE = os.getenv("GMAIL_TOKEN_PATH", "token.json")
 
 
@@ -189,6 +189,50 @@ def gmail_get_message(message_id: str) -> dict:
 
     return info
 
+@mcp.tool(
+    name="gmail_send_message",
+    description=(
+        "Send an e-mail through the authenticated user’s Gmail account.\n"
+        "Required: ▸ to (list[str]) ▸ subject (str) ▸ body (str, plain-text)\n"
+        "Optional: cc, bcc, sender (override the default From)."
+    ),
+)
+def gmail_send_message(
+    *,
+    to: List[str],
+    subject: str,
+    body: str,
+    cc: Optional[List[str]] = None,
+    bcc: Optional[List[str]] = None,
+    sender: Optional[str] = None,
+) -> dict:
+    """
+    Build a simple RFC-5322 message and send it.
+    Returns the API’s full response (contains the message id).
+    """
+    # ---------- build the MIME message ----------
+    msg = EmailMessage()
+    msg["To"] = ", ".join(to)
+    msg["Subject"] = subject
+    if cc:
+        msg["Cc"] = ", ".join(cc)
+    if bcc:
+        msg["Bcc"] = ", ".join(bcc)
+    if sender:
+        msg["From"] = sender  # otherwise Gmail sets the account’s default
+    msg.set_content(body)
+
+    raw_msg = base64.urlsafe_b64encode(msg.as_bytes()).decode()
+
+    # ---------- call the Gmail API ----------
+    try:
+        res = gmail.users().messages().send(
+            userId="me",
+            body={"raw": raw_msg},
+        ).execute()
+        return res   # includes id, threadId, labelIds
+    except HttpError as e:
+        return {"error": str(e)}
 
 # ---------------------------------------------------------------------------
 # CLI entry-point (handy during local development)

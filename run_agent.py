@@ -27,6 +27,7 @@ load_dotenv()
 
 AZURE_ENDPOINT     = os.getenv("AZURE_OPENAI_ENDPOINT")
 AZURE_API_VERSION  = os.getenv("AZURE_OPENAI_API_VERSION", "2024-09-01-preview")
+# DEPLOYMENT_NAME    = "gpt-4o-20241120"
 DEPLOYMENT_NAME    = "o3-20250416"
 
 # AAD-based auth  (comment this block out if you’re using an API key)
@@ -65,7 +66,7 @@ async def main() -> None:
             instructions=(
                 "Use Gmail tools (`gmail_search_messages`, `gmail_get_message`) "
                 "for email questions and Calendar tools "
-                "(`calendar_search_events`, `calendar_get_event`) for agenda questions."
+                "(`calendar_search_events`, `calendar_get_event`, `calendar_create_event`) for agenda questions."
             ),
             model=OpenAIChatCompletionsModel(
                 model=DEPLOYMENT_NAME,      # deployment ID, e.g. o1-20241217
