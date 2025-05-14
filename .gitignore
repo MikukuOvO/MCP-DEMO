@@ -1,7 +1,12 @@
 api/
-logs.
+logs/
+*.log
 .env
-*.pyc
 *.eml
+*.pyc
+*.json
+data/converted/item*/*.md
+*.md
+data*/
 token.json
 credentials.json

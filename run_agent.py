@@ -1,6 +1,7 @@
 """
-inbox_calendar_azure.py
+inbox_calendar_notion_azure.py
 Convert the "Inbox & Calendar Assistant" runner to use Azure OpenAI.
+Now includes Notion integration.
 """
 
 import asyncio
@@ -60,26 +61,47 @@ async def main() -> None:
                 params={"command": "python", "args": ["mcp_servers/calendar_mcp_server.py"]}
             )
         )
+        # Notion MCP server
+        notion_srv = await stack.enter_async_context(
+            MCPServerStdio(
+                params={"command": "python", "args": ["mcp_servers/notion_mcp_server.py"]}
+            )
+        )
 
         # ——— Agent that talks to Azure OpenAI ———
         agent = Agent(
-            name="Inbox & Calendar Assistant",
+            name="Inbox, Calendar & Notion Assistant",
             instructions=(
-                "Use Gmail tools (`gmail_search_messages`, `gmail_get_message`) "
-                "for email questions and Calendar tools "
-                "(`calendar_search_events`, `calendar_get_event`, `calendar_create_event`) for agenda questions."
+                "You are a helpful assistant that can interact with Gmail, Google Calendar, and Notion.\n\n"
+                
+                "For email-related queries, use Gmail tools:\n"
+                "- `gmail_search_messages`: Search emails with Gmail's query syntax\n"
+                "- `gmail_get_message`: Get full email content\n"
+                "- `gmail_send_message`: Send new emails\n\n"
+                
+                "For calendar-related queries, use Calendar tools:\n"
+                "- `calendar_search_events`: Find calendar events\n"
+                "- `calendar_get_event`: Get event details\n"
+                "- `calendar_create_event`: Create new calendar events\n\n"
+                
+                "For Notion-related queries, use Notion tools:\n"
+                "- `NotionManagerSearchContent`: Search for pages and databases in Notion\n"
+                "- `NotionManagerReadPage`: Read the full content of a Notion page\n\n"
+                
+                "When answering questions, use the appropriate tool based on the user's request. "
+                "You can combine information from multiple sources when needed."
             ),
             model=OpenAIChatCompletionsModel(
                 model=DEPLOYMENT_NAME,      # deployment ID, e.g. o1-20241217
                 openai_client=azure_client, # Azure client created above
             ),
-            mcp_servers=[gmail_srv, cal_srv],
+            mcp_servers=[gmail_srv, cal_srv, notion_srv],
         )
 
         # Example query – replace with whatever you need
         result = await Runner.run(
             agent,
-            input=input("Ask about your email or calendar: ")
+            input=input("Ask about your email, calendar, or Notion: ")
         )
         print(result.final_output)
         

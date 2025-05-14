@@ -32,8 +32,7 @@ from mcp.server.fastmcp import FastMCP
 # Configuration
 # ---------------------------------------------------------------------------
 SCOPES = [
-    "https://www.googleapis.com/auth/calendar.readonly",
-    "https://www.googleapis.com/auth/calendar.events",
+    "https://www.googleapis.com/auth/calendar",
 ]
 TOKEN_FILE = os.getenv("CALENDAR_TOKEN_PATH", "token.json")
 DEFAULT_CALENDAR_ID = os.getenv("CALENDAR_ID", "primary")

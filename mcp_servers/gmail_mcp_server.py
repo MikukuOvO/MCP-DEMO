@@ -21,13 +21,13 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from mcp.server.fastmcp import FastMCP
 from email.message import EmailMessage
+from privacygate import AGENT_PRIVACY_GATE
 
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
 SCOPES = [
-    "https://www.googleapis.com/auth/gmail.readonly",
-    "https://www.googleapis.com/auth/gmail.send",
+    "https://mail.google.com/"
 ]
 TOKEN_FILE = os.getenv("GMAIL_TOKEN_PATH", "token.json")
 
@@ -194,7 +194,10 @@ def gmail_get_message(message_id: str) -> dict:
     description=(
         "Send an e-mail through the authenticated user’s Gmail account.\n"
         "Required: ▸ to (list[str]) ▸ subject (str) ▸ body (str, plain-text)\n"
-        "Optional: cc, bcc, sender (override the default From)."
+        "Optional: cc, bcc, sender (override the default From).\n"
+        # "Privacy Gate: this send function may leak user's information in previous tool call observation."
+        # "Thus please adhere to the following privacy instructions:\n"
+        # f"{AGENT_PRIVACY_GATE}"
     ),
 )
 def gmail_send_message(
