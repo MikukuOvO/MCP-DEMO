@@ -21,8 +21,8 @@ load_dotenv()
 
 AZURE_ENDPOINT     = os.getenv("AZURE_OPENAI_ENDPOINT")
 AZURE_API_VERSION  = os.getenv("AZURE_OPENAI_API_VERSION", "2024-09-01-preview")
-# DEPLOYMENT_NAME    = "o3-20250416"
-DEPLOYMENT_NAME    = "gpt-4o-20241120"
+DEPLOYMENT_NAME    = "o3-20250416"
+# DEPLOYMENT_NAME    = "gpt-4o-20241120"
 
 # AAD-based auth
 token_provider = get_openai_token_provider()
@@ -59,14 +59,16 @@ async def run_agent_flow(item_id, user_instruction):
         agent = Agent(
             name="Inbox & Notion Assistant",
             instructions=(
-                "Use Gmail tools (`gmail_search_messages`, `gmail_get_message`, `gamil_send_message`) "
-                "for email questions and Notion tools "
-                "(`NotionManagerSearchContent`, `NotionManagerReadPage`) for Notion content questions."
-                "The Notion and Gmail have already contain enough information to complete the user instruction. No need to ask user for more information."
-                "Main Workflow are as follows, you should take them step by step:"
-                "1. Search emails for relavent information based on the user instruction. You should search several times until find enough information. If no content found in one search, you should scale up the search prompt and search again. If five times search still no content, let the query keyword be empty to search all content in the email space."
-                "2. Search Notion for relavent information based on the user instruction. You should search several times until find enough information. If no content found in one search, you should scale up the search prompt and search again. If five times search still no content, let the query keyword be empty to search all content in the Notion space."
-                "3. Complete the user instruction based on the information from the emails and Notion, don't make up any information. Call the necessary tools to complete the user instruction. No need to ask for more information."
+                """
+                Available tools:
+                - Gmail tools (`gmail_search_messages`, `gmail_get_message`, `gamil_send_message`, `gmail_get_all_messages`) for email questions
+                - Notion tools (`NotionManagerSearchContent`, `NotionManagerReadPage`, `NotionManagerGetAllContent`) for Notion content questions.
+
+                Main Workflow:
+                1. Search emails for relavent information by calling the tool `gmail_search_messages` based on the user instruction. If all of them show no content or no relavent information, you should call the tool `gmail_get_all_messages` to get all emails and search again.
+                2. Search Notion for relavent information by calling the tool `NotionManagerSearchContent` based on the user instruction. If all of them show no content or no relavent information, you should call the tool `NotionManagerGetAllContent` to get all content in the Notion space and search again.
+                3. You should use the `gmail_send_message` tool at the end to send email for completing the user instruction. No need to ask for more information.
+                """
             ),
             model=OpenAIChatCompletionsModel(
                 model=DEPLOYMENT_NAME,

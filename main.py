@@ -100,6 +100,7 @@ def process_filtered_data(json_file_path='data/filtered_data.json'):
         
         # Enumerate through the items
         for idx, item in enumerate(data, start=1):
+            # Skip items that have already been processed, start from 75
             try:
                 # Extract user instruction and toolkits
                 user_instruction = item['trajectory']['user_instruction']

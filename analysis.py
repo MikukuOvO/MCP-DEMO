@@ -33,7 +33,8 @@ NO - if the content does not include an email draft.
 """
 
     # Call the LLM with specified model
-    model = "o3-20250416"
+    # model = "o3-20250416"
+    model = "gpt-4o-20241120"
     response = get_chat_completion(
         model=model,
         messages=[

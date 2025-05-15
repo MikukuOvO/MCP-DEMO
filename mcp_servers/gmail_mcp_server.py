@@ -190,14 +190,85 @@ def gmail_get_message(message_id: str) -> dict:
     return info
 
 @mcp.tool(
+    name="gmail_get_all_messages",
+    description=(
+        "Retrieve all messages from the Gmail inbox with pagination support. "
+        "Can include snippet previews or full plain-text bodies in results. "
+        "Results are ordered by date with newest messages first."
+    ),
+)
+def gmail_get_all_messages(
+    max_results: int = 20,
+    include_snippet: bool = False,
+    include_body: bool = False,
+    page_token: Optional[str] = None,
+) -> dict:
+    """Return a dict with all messages from inbox plus nextPageToken if more exist.
+    
+    Example::
+    
+        {
+            "messages": [
+                {
+                    "id": "18c1…",
+                    "subject": "Hello world",
+                    "from": "Alice <alice@example.com>",
+                    "date": "Thu, 1 May 2025 09:00:00 +0900",
+                    "snippet": "Hi Bob — just a quick note…",  # if requested
+                    "body": "Hi Bob, …"                        # if requested
+                }
+            ],
+            "nextPageToken": "…",  # present when further pages exist
+            "resultSizeEstimate": 1542  # approximate total number of messages
+        }
+    """
+    try:
+        # The empty query will retrieve all messages
+        res = gmail.users().messages().list(
+            userId="me",
+            maxResults=max_results,
+            pageToken=page_token,
+        ).execute()
+    except HttpError as e:
+        return {"error": str(e)}
+
+    out: List[Dict[str, str]] = []
+    for msg_meta in res.get("messages", []):
+        # Choose retrieval format based on whether we need the body
+        fmt = "full" if include_body else "metadata"
+        try:
+            meta = gmail.users().messages().get(
+                userId="me",
+                id=msg_meta["id"],
+                format=fmt,
+                metadataHeaders=["Subject", "From", "Date"] if fmt == "metadata" else None,
+            ).execute()
+        except HttpError:
+            # Skip messages we cannot retrieve
+            continue
+
+        summary = _headers_from_payload(meta)
+        if include_snippet:
+            summary["snippet"] = meta.get("snippet", "")
+        if include_body:
+            summary["body"] = _extract_plain_text(meta)
+        out.append(summary)
+
+    return {
+        "messages": out,
+        "nextPageToken": res.get("nextPageToken"),
+        "resultSizeEstimate": res.get("resultSizeEstimate"),
+    }
+
+@mcp.tool(
     name="gmail_send_message",
     description=(
         "Send an e-mail through the authenticated user’s Gmail account.\n"
         "Required: ▸ to (list[str]) ▸ subject (str) ▸ body (str, plain-text)\n"
         "Optional: cc, bcc, sender (override the default From).\n"
-        # "Privacy Gate: this send function may leak user's information in previous tool call observation."
-        # "Thus please adhere to the following privacy instructions:\n"
-        # f"{AGENT_PRIVACY_GATE}"
+        "Privacy Gate: this send function may leak user's information in previous tool call observation."
+        "Thus please adhere to the following privacy instructions:\n"
+        f"{AGENT_PRIVACY_GATE}"
     ),
 )
 def gmail_send_message(

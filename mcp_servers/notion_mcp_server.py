@@ -362,6 +362,108 @@ def notion_search_content(
         return {"error": str(e)}
 
 @mcp.tool(
+    name="NotionManagerGetAllContent",
+    description=(
+        "Retrieve all pages from Notion workspace, ordered by last_edited_time. "
+        "Returns both page metadata and summarized content. "
+        "Supports pagination for handling large workspaces."
+    ),
+)
+def notion_get_all_content(
+    page_size: int = 20,
+    include_content: bool = False,
+    start_cursor: Optional[str] = None,
+) -> dict:
+    """Return all pages in workspace with optional content preview.
+    
+    Example return::
+    
+        {
+            "results": [
+                {
+                    "id": "abc123...",
+                    "type": "page",
+                    "title": "Project Roadmap",
+                    "url": "https://notion.so/...",
+                    "created_time": "2024-01-01T10:00:00.000Z",
+                    "last_edited_time": "2024-01-02T15:30:00.000Z",
+                    "parent_type": "workspace",
+                    "content_preview": "This document outlines our Q2 goals..."  # if include_content=True
+                }
+            ],
+            "has_more": true,
+            "next_cursor": "cursor-value-for-pagination"
+        }
+    """
+    try:
+        # Search with empty query to get all pages
+        response = notion.search(
+            query="",
+            filter_type="page",
+            page_size=page_size,
+            # Note: Notion's API already handles the start_cursor
+        )
+        
+        results = []
+        for item in response.get("results", []):
+            result = {
+                "id": item.get("id"),
+                "type": item.get("object"),
+                "title": _extract_title_from_page(item),
+                "url": item.get("url"),
+                "created_time": item.get("created_time"),
+                "last_edited_time": item.get("last_edited_time"),
+            }
+            
+            # Add parent information
+            parent = item.get("parent", {})
+            parent_type = parent.get("type")
+            result["parent_type"] = parent_type
+            
+            if parent_type == "page_id":
+                result["parent_id"] = parent.get("page_id")
+            elif parent_type == "database_id":
+                result["parent_id"] = parent.get("database_id")
+            
+            # Optionally include content preview
+            if include_content:
+                try:
+                    # Get the first few blocks to create a preview
+                    page_blocks = notion.get_blocks(item.get("id"))
+                    blocks = page_blocks.get("results", [])
+                    
+                    # Extract text from first few blocks to create a preview
+                    content_preview = []
+                    for block in blocks[:3]:  # Limit to first 3 blocks for preview
+                        block_type = block.get("type")
+                        if block_type in ["paragraph", "heading_1", "heading_2", "heading_3"]:
+                            block_data = block.get(block_type, {})
+                            text = _extract_text_from_rich_text(block_data.get("rich_text", []))
+                            if text:
+                                content_preview.append(text)
+                    
+                    # Join with spaces and truncate if too long
+                    preview_text = " ".join(content_preview)
+                    if len(preview_text) > 200:
+                        preview_text = preview_text[:197] + "..."
+                    
+                    result["content_preview"] = preview_text
+                except Exception as e:
+                    # If there's an error getting preview, just skip it
+                    result["content_preview"] = ""
+            
+            results.append(result)
+        
+        return {
+            "results": results,
+            "has_more": response.get("has_more", False),
+            "next_cursor": response.get("next_cursor")
+        }
+        
+    except requests.exceptions.RequestException as e:
+        return {"error": str(e)}
+
+@mcp.tool(
     name="NotionManagerReadPage",
     description=(
         "Retrieve full content of a Notion page including all blocks. "
