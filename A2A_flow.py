@@ -1,0 +1,180 @@
+#!/usr/bin/env python3
+"""
+Modified agent_flow.py that uses Gmail and Notion APIs
+"""
+
+import asyncio
+import json
+import os
+import sys
+from contextlib import AsyncExitStack
+
+from dotenv import load_dotenv
+from api.cloudgpt_aoai import get_openai_token_provider
+from openai import AsyncAzureOpenAI
+
+from agents import Agent, Runner, OpenAIChatCompletionsModel
+from agents.mcp import MCPServerStdio
+
+# Load environment variables
+load_dotenv()
+
+AZURE_ENDPOINT     = os.getenv("AZURE_OPENAI_ENDPOINT", "https://cloudgpt-openai.azure-api.net/")
+AZURE_API_VERSION  = os.getenv("AZURE_OPENAI_API_VERSION", "2025-03-01-preview")
+DEPLOYMENT_NAME    = "o3-20250416"
+# DEPLOYMENT_NAME    = "gpt-4o-20241120"
+
+# AAD-based auth
+token_provider = get_openai_token_provider()
+
+azure_client_response = AsyncAzureOpenAI(
+    azure_endpoint=AZURE_ENDPOINT,
+    api_version=AZURE_API_VERSION,
+    azure_ad_token_provider=token_provider,
+)
+
+azure_client_request = AsyncAzureOpenAI(
+    azure_endpoint=AZURE_ENDPOINT,
+    api_version=AZURE_API_VERSION,
+    azure_ad_token_provider=token_provider,
+)
+
+async def run_agent_flow(item_id, user_instruction):
+    """
+    Run the agent flow for a specific item ID with the given user instruction
+    """
+    print(f"Processing instruction: {user_instruction}")
+    
+    async with AsyncExitStack() as stack:
+        # Gmail MCP server
+        gmail_srv = await stack.enter_async_context(
+            MCPServerStdio(
+                params={"command": "python", "args": ["mcp_servers/gmail_mcp_server.py"]},
+                client_session_timeout_seconds=30.0
+            )
+        )
+        # Notion MCP server
+        notion_srv = await stack.enter_async_context(
+            MCPServerStdio(
+                params={"command": "python", "args": ["mcp_servers/notion_mcp_server.py"]},
+                client_session_timeout_seconds=30.0
+            )
+        )
+
+        # Agent that talks to Azure OpenAI
+        response_agent = Agent(
+            name="Inbox & Notion Assistant",
+            instructions=(
+                "Use Gmail tools (`gmail_search_messages`, `gmail_get_message`, `gamil_send_message`) "
+                "for email questions and Notion tools "
+                "(`NotionManagerSearchContent`, `NotionManagerReadPage`) for Notion content questions."
+                "The Notion and Gmail have already contain enough information to complete the user instruction. No need to ask user for more information."
+                "Main Workflow are as follows, you should take them step by step:"
+                "1. Search emails for relavent information based on the user instruction. You should search several times until find enough information. If no content found in one search, you should scale up the search prompt and search again. If five times search still no content, let the query keyword be empty to search all content in the email space."
+                "2. Search Notion for relavent information based on the user instruction. You should search several times until find enough information. If no content found in one search, you should scale up the search prompt and search again. If five times search still no content, let the query keyword be empty to search all content in the Notion space."
+                "3. Complete the user instruction based on the information from the emails and Notion, don't make up any information. Call the necessary tools to complete the user instruction. No need to ask for more information."
+            ),
+            model=OpenAIChatCompletionsModel(
+                model=DEPLOYMENT_NAME,
+                openai_client=azure_client_response,
+            ),
+            mcp_servers=[gmail_srv, notion_srv],
+        )
+
+        request_agent = Agent(
+            name="Request Assistant",
+            instructions=(
+                "You are a request assistant."
+                "You need to request another person's agent to provide you the information you need."
+                "After you get the request, you should immediately generate a polite request, which will be passed to the response agent later."
+                "You need to notice the response agent to check the email, calendar, or Notion to get the information."
+                # "After you get the response, you should summary the response immediately."
+            ),
+            model=OpenAIChatCompletionsModel(
+                model=DEPLOYMENT_NAME,      # deployment ID, e.g. o1-20241217
+                openai_client=azure_client_request, # Azure client created above
+            ),
+            # mcp_servers=[gmail_srv, cal_srv],
+        )
+
+        # Run with the user instruction
+        request_result = await Runner.run(
+            request_agent,
+            input=user_instruction,
+            max_turns=25
+        )
+
+        response_result = await Runner.run(
+            response_agent,
+            input=request_result.final_output
+        )
+
+        print(f"Result: {response_result.final_output}")
+        
+        # Save results to a file with the item ID
+        output_file = f"data/A2A_results/item{item_id}.json"
+        
+        # Ensure results directory exists
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        
+        with open(output_file, "w") as f:
+            # Format new_items for better readability
+            formatted_items = []
+            
+            for item in response_result.new_items:
+                item_type = item.type
+                
+                if item_type == 'tool_call_item':
+                    formatted_item = {
+                        "type": item_type,
+                        "tool_name": item.raw_item.name,
+                        "arguments": item.raw_item.arguments
+                    }
+                elif item_type == 'tool_call_output_item':
+                    formatted_item = {
+                        "type": item_type,
+                        "output": item.output
+                    }
+                elif item_type == 'message_output_item':
+                    formatted_item = {
+                        "type": item_type,
+                        "content": item.raw_item.content[0].text if item.raw_item.content else ""
+                    }
+                else:
+                    formatted_item = {"type": item_type}
+                
+                formatted_items.append(formatted_item)
+            
+            # Create the final JSON structure
+            json_data = {
+                "item_id": item_id,
+                "user_instruction": user_instruction,
+                "formatted_items": formatted_items,
+                "final_output": response_result.final_output
+            }
+            
+            json.dump(json_data, f, indent=2)
+        
+        print(f"Results saved to {output_file}")
+
+def main():
+    """Main function to handle command line arguments"""
+    if len(sys.argv) != 3:
+        print("Usage: python A2A_flow.py <item_id> <user_instruction>")
+        sys.exit(1)
+    
+    try:
+        item_id = int(sys.argv[1])
+    except ValueError:
+        print("Error: Item ID must be an integer")
+        sys.exit(1)
+    
+    user_instruction = sys.argv[2]
+    
+    print(f"Running agent flow for item {item_id}")
+    
+    # Run the async function
+    asyncio.run(run_agent_flow(item_id, user_instruction))
+
+if __name__ == "__main__":
+    main()
