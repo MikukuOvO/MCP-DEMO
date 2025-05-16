@@ -81,7 +81,7 @@ Description of the user:
 Description of the relationships between the user and others:
 {sender_card['relationship']}
 
-Your goal is to help the user prepare and send messages or emails based on request from others and relevant knowledge stored in the user's Gmail and Notion.
+Your goal is to prepare and send messages or emails on behalf of the user. The content of message or email is based on the request from others and relevant knowledge stored in the user's Gmail and Notion.
 
 Available tools:
 - Gmail tools (`gmail_search_messages`, `gmail_get_message`, `gamil_send_message`, `gmail_get_all_messages`) for email questions
@@ -111,8 +111,8 @@ Description of the user:
 Description of the relationships between the user and others:
 {recipient_card['relationship']}
 
-Your goal is to help the user request another person to provide you the information you need.
-After you get the request, you should immediately generate a polite request, which will be send to the recipient later.
+Your goal is to request some information from others on behalf of the user.
+After you get the instruction, you should immediately generate a polite request based on the instruction, which will be sent to the recipient later.
 You can notice the recipient to check the email, calendar, or Notion to get the information.
 """
         request_agent = Agent(

@@ -7,7 +7,6 @@ logs/
 *.json
 data/converted/item*/*.md
 *.md
-data*/
 token.json
 credentials.json
 cloudgpt-apim-token-cache.bin
