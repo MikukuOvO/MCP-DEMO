@@ -19,8 +19,10 @@ from agents.mcp import MCPServerStdio
 # Load environment variables
 load_dotenv()
 
-AZURE_ENDPOINT     = os.getenv("AZURE_OPENAI_ENDPOINT", "https://cloudgpt-openai.azure-api.net/")
-AZURE_API_VERSION  = os.getenv("AZURE_OPENAI_API_VERSION", "2025-03-01-preview")
+# AZURE_ENDPOINT     = os.getenv("AZURE_OPENAI_ENDPOINT", "https://cloudgpt-openai.azure-api.net/")
+# AZURE_API_VERSION  = os.getenv("AZURE_OPENAI_API_VERSION", "2025-03-01-preview")
+AZURE_ENDPOINT     = "https://cloudgpt-openai.azure-api.net/"
+AZURE_API_VERSION  = "2025-03-01-preview"
 DEPLOYMENT_NAME    = "o3-20250416"
 # DEPLOYMENT_NAME    = "gpt-4o-20241120"
 
@@ -61,19 +63,38 @@ async def run_agent_flow(item_id, user_instruction):
             )
         )
 
+        # Read agent cards
+        card_path = f"data/agent_cards/item{item_id}_sender.json"
+        with open(card_path, "r") as f:
+            sender_card = json.load(f)
+        card_path = f"data/agent_cards/item{item_id}_recipient.json"
+        with open(card_path, "r") as f:
+            recipient_card = json.load(f)
+
         # Agent that talks to Azure OpenAI
+        response_prompt = f"""
+You are an intelligent assistant serving a user. The followings are the descriptions of the user and the relationships between the user and others.
+
+Description of the user:
+{sender_card['description']}
+
+Description of the relationships between the user and others:
+{sender_card['relationship']}
+
+Your goal is to prepare and send messages or emails on behalf of the user. The content of message or email is based on the request from others and relevant knowledge stored in the user's Gmail and Notion.
+
+Available tools:
+- Gmail tools (`gmail_search_messages`, `gmail_get_message`, `gamil_send_message`, `gmail_get_all_messages`) for email questions
+- Notion tools (`NotionManagerSearchContent`, `NotionManagerReadPage`, `NotionManagerGetAllContent`) for Notion content questions.
+
+Main Workflow:
+1. Search emails for relavent information by calling the tool `gmail_search_messages` based on the user instruction. If all of them show no content or no relavent information, you should call the tool `gmail_get_all_messages` to get all emails and search again.
+2. Search Notion for relavent information by calling the tool `NotionManagerSearchContent` based on the user instruction. If all of them show no content or no relavent information, you should call the tool `NotionManagerGetAllContent` to get all content in the Notion space and search again.
+3. You should use the `gmail_send_message` tool at the end to send email for completing the user instruction. No need to ask for more information.
+"""
         response_agent = Agent(
             name="Inbox & Notion Assistant",
-            instructions=(
-                "Use Gmail tools (`gmail_search_messages`, `gmail_get_message`, `gamil_send_message`) "
-                "for email questions and Notion tools "
-                "(`NotionManagerSearchContent`, `NotionManagerReadPage`) for Notion content questions."
-                "The Notion and Gmail have already contain enough information to complete the user instruction. No need to ask user for more information."
-                "Main Workflow are as follows, you should take them step by step:"
-                "1. Search emails for relavent information based on the user instruction. You should search several times until find enough information. If no content found in one search, you should scale up the search prompt and search again. If five times search still no content, let the query keyword be empty to search all content in the email space."
-                "2. Search Notion for relavent information based on the user instruction. You should search several times until find enough information. If no content found in one search, you should scale up the search prompt and search again. If five times search still no content, let the query keyword be empty to search all content in the Notion space."
-                "3. Complete the user instruction based on the information from the emails and Notion, don't make up any information. Call the necessary tools to complete the user instruction. No need to ask for more information."
-            ),
+            instructions=response_prompt,
             model=OpenAIChatCompletionsModel(
                 model=DEPLOYMENT_NAME,
                 openai_client=azure_client_response,
@@ -81,15 +102,22 @@ async def run_agent_flow(item_id, user_instruction):
             mcp_servers=[gmail_srv, notion_srv],
         )
 
+        request_prompt = f"""
+You are an intelligent assistant serving a user. The followings are the descriptions of the user and the relationships between the user and others.
+
+Description of the user:
+{recipient_card['description']}
+
+Description of the relationships between the user and others:
+{recipient_card['relationship']}
+
+Your goal is to request some information from others on behalf of the user.
+After you get the instruction, you should immediately generate a polite request based on the instruction, which will be sent to the recipient later.
+You can notice the recipient to check the email, calendar, or Notion to get the information.
+"""
         request_agent = Agent(
             name="Request Assistant",
-            instructions=(
-                "You are a request assistant."
-                "You need to request another person's agent to provide you the information you need."
-                "After you get the request, you should immediately generate a polite request, which will be passed to the response agent later."
-                "You need to notice the response agent to check the email, calendar, or Notion to get the information."
-                # "After you get the response, you should summary the response immediately."
-            ),
+            instructions=request_prompt,
             model=OpenAIChatCompletionsModel(
                 model=DEPLOYMENT_NAME,      # deployment ID, e.g. o1-20241217
                 openai_client=azure_client_request, # Azure client created above
@@ -104,6 +132,8 @@ async def run_agent_flow(item_id, user_instruction):
             max_turns=25
         )
 
+        print(f"Request: {request_result.final_output}")
+
         response_result = await Runner.run(
             response_agent,
             input=request_result.final_output
@@ -111,7 +141,7 @@ async def run_agent_flow(item_id, user_instruction):
 
         print(f"Result: {response_result.final_output}")
         
-        # Save results to a file with the item ID
+        # Save response results
         output_file = f"data/A2A_results/item{item_id}.json"
         
         # Ensure results directory exists
@@ -151,6 +181,52 @@ async def run_agent_flow(item_id, user_instruction):
                 "user_instruction": user_instruction,
                 "formatted_items": formatted_items,
                 "final_output": response_result.final_output
+            }
+            
+            json.dump(json_data, f, indent=2)
+        
+        print(f"Results saved to {output_file}")
+
+        # Save request results
+        output_file = f"data/A2A_results/item{item_id}_request.json"
+        
+        # Ensure results directory exists
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        
+        with open(output_file, "w") as f:
+            # Format new_items for better readability
+            formatted_items = []
+            
+            for item in request_result.new_items:
+                item_type = item.type
+                
+                if item_type == 'tool_call_item':
+                    formatted_item = {
+                        "type": item_type,
+                        "tool_name": item.raw_item.name,
+                        "arguments": item.raw_item.arguments
+                    }
+                elif item_type == 'tool_call_output_item':
+                    formatted_item = {
+                        "type": item_type,
+                        "output": item.output
+                    }
+                elif item_type == 'message_output_item':
+                    formatted_item = {
+                        "type": item_type,
+                        "content": item.raw_item.content[0].text if item.raw_item.content else ""
+                    }
+                else:
+                    formatted_item = {"type": item_type}
+                
+                formatted_items.append(formatted_item)
+            
+            # Create the final JSON structure
+            json_data = {
+                "item_id": item_id,
+                "user_instruction": user_instruction,
+                "formatted_items": formatted_items,
+                "final_output": request_result.final_output
             }
             
             json.dump(json_data, f, indent=2)

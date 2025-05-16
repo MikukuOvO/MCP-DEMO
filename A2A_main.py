@@ -3,7 +3,7 @@
 Complete script to process filtered_data.json:
 1. Call add_fake_mail.py for Gmail items
 2. Call add_fake_notion.py for NotionManager items
-3. Call agent_flow.py with user instruction to execute the task
+3. Call A2A_flow.py with user instruction to execute the task
 """
 
 import json
@@ -85,7 +85,7 @@ def run_script(script_name, *args):
     
     return return_code
 
-def process_filtered_data(json_file_path='data/filtered_data.json'):
+def process_filtered_data(json_file_path='data/A2A_data.json'):
     """
     Read filtered_data.json, extract user instructions, and run the complete flow for each item
     """
@@ -94,12 +94,14 @@ def process_filtered_data(json_file_path='data/filtered_data.json'):
         # Read the JSON file
         with open(json_file_path, 'r') as file:
             data = json.load(file)
+        data = data[0: 20]
         
         total_items = len(data)
         print(f"Found {total_items} items to process")
         
         # Enumerate through the items
         for idx, item in enumerate(data, start=1):
+            # Skip items that have already been processed, start from 75
             try:
                 # Extract user instruction and toolkits
                 user_instruction = item['trajectory']['user_instruction']
@@ -139,7 +141,7 @@ def process_filtered_data(json_file_path='data/filtered_data.json'):
                 
                 # Pass the user instruction as a parameter
                 # Using shlex.quote to properly escape the instruction for command line
-                return_code = run_script('agent_flow.py', idx, shlex.quote(user_instruction))
+                return_code = run_script('A2A_flow.py', idx, shlex.quote(user_instruction))
                 
                 if return_code == 0:
                     print(f"\n✓ Successfully completed agent flow for item {idx}")
@@ -166,4 +168,4 @@ def process_filtered_data(json_file_path='data/filtered_data.json'):
         sys.exit(1)
 
 if __name__ == '__main__':
-    process_filtered_data()
+    process_filtered_data('data/A2A_data.json')
