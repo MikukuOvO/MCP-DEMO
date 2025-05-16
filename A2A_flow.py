@@ -136,7 +136,8 @@ You can notice the recipient to check the email, calendar, or Notion to get the 
 
         response_result = await Runner.run(
             response_agent,
-            input=request_result.final_output
+            input=request_result.final_output,
+            max_turns=25
         )
 
         print(f"Result: {response_result.final_output}")

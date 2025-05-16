@@ -94,7 +94,7 @@ def process_filtered_data(json_file_path='data/A2A_data.json'):
         # Read the JSON file
         with open(json_file_path, 'r') as file:
             data = json.load(file)
-        data = data[0: 20]
+        data = data[: 50]
         
         total_items = len(data)
         print(f"Found {total_items} items to process")

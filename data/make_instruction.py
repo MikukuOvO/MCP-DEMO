@@ -1,6 +1,4 @@
 PROMPT = """
-Prompt:
-
 You will receive a structured JSON object describing a communication scenario between two or more people. Each person in the scenario has a corresponding intelligent agent. The agent can read the user's emails or notion pages and send email to others. The agents also know the identity and relationships of their users.The data recipient is giving instructions to his or her agent to communicate with the data sender's agent.
 
 Your task is to rewrite this instruction from the perspective of the data recipient, as if they were instructing their own agent to request information from the data sender's agent.

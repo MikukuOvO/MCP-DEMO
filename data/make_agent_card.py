@@ -7,6 +7,8 @@ Based on the JSON data you received (especially the "seed" and "vigenette" parts
 
 2. The information about other people related to the user in the current scene, and their relationship with the user.
 
+Note that the sender's relationships are private information and should not be shared with the recipient. If someone is only related to the sender but not the recipient, make sure that person only appears in the sender's relationships and not in the recipient's relationships. And vice versa.
+
 Output your answer in the following JSON format, do not include any other information:
 
 {
@@ -85,6 +87,7 @@ def main():
     total_items = len(data)
     print(f"Found {total_items} items to process")
     for item in data:
+        print(f"Processing item: {item['name']}")
         input_item = json.dumps(item, indent=2)
         response = get_chat_completion(
             model=model,
