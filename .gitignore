@@ -6,6 +6,7 @@ logs/
 *.pyc
 *.json
 data/converted/item*/*.md
+data*/
 *.md
 token.json
 credentials.json
