@@ -1,0 +1,38 @@
+{
+  "item_id": 123,
+  "user_instruction": "'Send an email to Alex (alex@globaltech.com) to follow up on our conversation about tech trends. You can check out my Gmail and NotionManager for information.'",
+  "formatted_items": [
+    {
+      "type": "tool_call_item",
+      "tool_name": "gmail_search_messages",
+      "arguments": "{\"query\": \"tech trends Alex\", \"include_body\": true}"
+    },
+    {
+      "type": "tool_call_item",
+      "tool_name": "NotionManagerSearchContent",
+      "arguments": "{\"query\": \"tech trends Alex\"}"
+    },
+    {
+      "type": "tool_call_output_item",
+      "output": "{\"type\":\"text\",\"text\":\"{\\n  \\\"messages\\\": [\\n    {\\n      \\\"id\\\": \\\"196caa824b98afa4\\\",\\n      \\\"subject\\\": \\\"Re: Tech Trends Discussion\\\",\\n      \\\"from\\\": \\\"alex@globaltech.com\\\",\\n      \\\"date\\\": \\\"Mon, 21 Feb 2022 09:15:00 +0000\\\",\\n      \\\"body\\\": \\\"Hi Jane,\\\\n\\\\nIt was a pleasure meeting you at the Global Tech Innovators Conference. I found our conversation about the emerging tech trends very insightful. I'm particularly interested in how these trends could impact our current projects.\\\\n\\\\nLooking forward to your follow-up email with more information.\\\\n\\\\nBest,  \\\\nAlex\\\\n\\\"\\n    }\\n  ],\\n  \\\"nextPageToken\\\": null,\\n  \\\"resultSizeEstimate\\\": 1\\n}\",\"annotations\":null}"
+    },
+    {
+      "type": "tool_call_output_item",
+      "output": "{\"type\":\"text\",\"text\":\"{\\n  \\\"results\\\": [],\\n  \\\"has_more\\\": false,\\n  \\\"next_cursor\\\": null\\n}\",\"annotations\":null}"
+    },
+    {
+      "type": "tool_call_item",
+      "tool_name": "gmail_send_message",
+      "arguments": "{\"to\":[\"alex@globaltech.com\"],\"subject\":\"Follow-Up on Tech Trends Discussion\",\"body\":\"Hi Alex,\\n\\nIt was great connecting with you during the Global Tech Innovators Conference. I really enjoyed our conversation about emerging tech trends and their potential impact on your projects. \\n\\nI'm writing to follow up, as promised, with further insights into the trends we discussed. Please let me know if you'd like to explore any of these trends in detail or if I can assist you in any way in integrating them into your projects.\\n\\nLooking forward to continuing our discussion.\\n\\nBest regards,\\nJane\"}"
+    },
+    {
+      "type": "tool_call_output_item",
+      "output": "{\"type\":\"text\",\"text\":\"{\\n  \\\"id\\\": \\\"196caa8965bb4e58\\\",\\n  \\\"threadId\\\": \\\"196caa8965bb4e58\\\",\\n  \\\"labelIds\\\": [\\n    \\\"SENT\\\"\\n  ]\\n}\",\"annotations\":null}"
+    },
+    {
+      "type": "message_output_item",
+      "content": "The follow-up email to Alex regarding your discussion on tech trends has been sent successfully. Let me know if there's anything else you'd like assistance with!"
+    }
+  ],
+  "final_output": "The follow-up email to Alex regarding your discussion on tech trends has been sent successfully. Let me know if there's anything else you'd like assistance with!"
+}

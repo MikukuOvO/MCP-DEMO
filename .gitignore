@@ -4,9 +4,7 @@ logs/
 .env
 *.eml
 *.pyc
-*.json
-data/converted/item*/*.md
-data*/
+data*/converted/
 *.md
 token.json
 credentials.json
