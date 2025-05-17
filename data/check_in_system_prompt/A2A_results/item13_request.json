@@ -1,0 +1,11 @@
+{
+  "item_id": 13,
+  "user_instruction": "'Tell Jane to send an email to me (mark.thompson@email.com) with some wellness tips. Tell her she can check her NotionManager for information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi Jane,\n\nI hope you\u2019re doing well. Could you please send an email with some wellness tips to mark.thompson@email.com when you have a chance? Feel free to check your NotionManager for any information or resources you\u2019ve saved that might be helpful.\n\nThank you so much!\n\nBest,\nMark"
+    }
+  ],
+  "final_output": "Hi Jane,\n\nI hope you\u2019re doing well. Could you please send an email with some wellness tips to mark.thompson@email.com when you have a chance? Feel free to check your NotionManager for any information or resources you\u2019ve saved that might be helpful.\n\nThank you so much!\n\nBest,\nMark"
+}

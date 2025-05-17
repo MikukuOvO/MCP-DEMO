@@ -1,0 +1,11 @@
+{
+  "item_id": 12,
+  "user_instruction": "'Tell Jane to reply to me (mark.thompson@techcorp.com) with an overview of the team\u2019s performance on Project Titan, and remind her she can consult her Gmail and Notion for the information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Project Titan Team Performance Overview\n\nHi Jane,\n\nI hope you\u2019re doing well. Could you please send me an overview of our team\u2019s performance on Project Titan at your earliest convenience? If it helps, you can reference any notes or reports you\u2019ve stored in your Gmail or Notion workspace.\n\nThank you very much for your guidance and support.\n\nBest regards,\nMark Thompson  \nmark.thompson@techcorp.com"
+    }
+  ],
+  "final_output": "Subject: Request for Project Titan Team Performance Overview\n\nHi Jane,\n\nI hope you\u2019re doing well. Could you please send me an overview of our team\u2019s performance on Project Titan at your earliest convenience? If it helps, you can reference any notes or reports you\u2019ve stored in your Gmail or Notion workspace.\n\nThank you very much for your guidance and support.\n\nBest regards,\nMark Thompson  \nmark.thompson@techcorp.com"
+}

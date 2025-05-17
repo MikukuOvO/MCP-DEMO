@@ -1,0 +1,11 @@
+{
+  "item_id": 5,
+  "user_instruction": "'Tell John to send me (sarah.connor@investments.com) a summary of our discussion from the Global Business Hub meeting, and remind him to review his Notion for the details.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi John,\n\nHope you\u2019re doing well. Could you please send me (sarah.connor@investments.com) a concise summary of our discussion from the Global Business Hub meeting? When you have a moment, please also review the related notes in your Notion workspace to ensure everything aligns before you send it over.\n\nMany thanks for your help!\n\nBest,\nSarah"
+    }
+  ],
+  "final_output": "Hi John,\n\nHope you\u2019re doing well. Could you please send me (sarah.connor@investments.com) a concise summary of our discussion from the Global Business Hub meeting? When you have a moment, please also review the related notes in your Notion workspace to ensure everything aligns before you send it over.\n\nMany thanks for your help!\n\nBest,\nSarah"
+}

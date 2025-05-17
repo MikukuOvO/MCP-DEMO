@@ -1,0 +1,11 @@
+{
+  "item_id": 2,
+  "user_instruction": "'Tell John to reply to me (emily.harris@greenleafwellness.org) with guidance on handling anxiety disorders, and remind him to check his Notion for information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Guidance on Anxiety Disorder Cases\n\nHi John,\n\nI hope you\u2019re doing well. Could you please reply to me at emily.harris@greenleafwellness.org with your guidance on handling anxiety disorders? Your insights are always incredibly helpful as I work through some new cases.\n\nAlso, when you have a moment, please check your Notion workspace\u2014you may have relevant information or notes there that could be useful.\n\nThank you so much for your support!\n\nWarm regards,\nEmily"
+    }
+  ],
+  "final_output": "Subject: Request for Guidance on Anxiety Disorder Cases\n\nHi John,\n\nI hope you\u2019re doing well. Could you please reply to me at emily.harris@greenleafwellness.org with your guidance on handling anxiety disorders? Your insights are always incredibly helpful as I work through some new cases.\n\nAlso, when you have a moment, please check your Notion workspace\u2014you may have relevant information or notes there that could be useful.\n\nThank you so much for your support!\n\nWarm regards,\nEmily"
+}

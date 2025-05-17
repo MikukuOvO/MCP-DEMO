@@ -1,0 +1,11 @@
+{
+  "item_id": 16,
+  "user_instruction": "'Tell Jane to prepare a detailed performance and budget report for me (mark@optitech.solutions). Instruct her to review her Gmail and Notion for the necessary information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Detailed Performance & Budget Report\n\nHi Jane,\n\nI hope you\u2019re doing well. Could you please compile a comprehensive performance and budget report for my department? It would be great if you could:\n\n\u2022 Consolidate the latest performance metrics and budget figures (actuals vs. forecast)  \n\u2022 Highlight any significant variances or trends we should be aware of  \n\u2022 Include any relevant head-count or staffing updates that might impact our planning\n\nTo make sure we have the most up-to-date information, please review any recent emails in your Gmail as well as the relevant pages and data sources in Notion.\n\nIf possible, could you have a first draft ready by early next week? Let me know if that timeline works for you or if you need any additional details from my side.\n\nThanks a lot for your help!\n\nBest regards,  \nMark  \nHead of Software Development  \nOptiTech Solutions  \nmark@optitech.solutions"
+    }
+  ],
+  "final_output": "Subject: Request for Detailed Performance & Budget Report\n\nHi Jane,\n\nI hope you\u2019re doing well. Could you please compile a comprehensive performance and budget report for my department? It would be great if you could:\n\n\u2022 Consolidate the latest performance metrics and budget figures (actuals vs. forecast)  \n\u2022 Highlight any significant variances or trends we should be aware of  \n\u2022 Include any relevant head-count or staffing updates that might impact our planning\n\nTo make sure we have the most up-to-date information, please review any recent emails in your Gmail as well as the relevant pages and data sources in Notion.\n\nIf possible, could you have a first draft ready by early next week? Let me know if that timeline works for you or if you need any additional details from my side.\n\nThanks a lot for your help!\n\nBest regards,  \nMark  \nHead of Software Development  \nOptiTech Solutions  \nmark@optitech.solutions"
+}

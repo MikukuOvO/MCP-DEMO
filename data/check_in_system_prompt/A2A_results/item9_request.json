@@ -1,0 +1,11 @@
+{
+  "item_id": 9,
+  "user_instruction": "'Tell John to send the team retreat proposal to me (susan@brighthorizonsms.com) and remind him he can check his Gmail and Notion for the necessary information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Team Retreat Proposal\n\nHi John,\n\nCould you please send me the latest version of the team retreat proposal at your earliest convenience? You can email it directly to me at susan@brighthorizonsms.com.\n\nIf you need any supporting details or reference materials while preparing the document, feel free to check your Gmail and our Notion workspace.\n\nThank you!\n\nBest,  \nSusan"
+    }
+  ],
+  "final_output": "Subject: Request for Team Retreat Proposal\n\nHi John,\n\nCould you please send me the latest version of the team retreat proposal at your earliest convenience? You can email it directly to me at susan@brighthorizonsms.com.\n\nIf you need any supporting details or reference materials while preparing the document, feel free to check your Gmail and our Notion workspace.\n\nThank you!\n\nBest,  \nSusan"
+}

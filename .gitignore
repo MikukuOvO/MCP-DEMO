@@ -12,3 +12,4 @@ credentials.json
 cloudgpt-apim-token-cache.bin
 !data/baseline/**
 !data/check_before_send/**
+!data/check_in_system_prompt/**

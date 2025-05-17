@@ -1,0 +1,11 @@
+{
+  "item_id": 24,
+  "user_instruction": "'Tell John to send me (sarah.thompson@techinnovations.com) the additional information I requested for his job application, including his updated resume, professional references, and any recent certifications or awards. Remind him he can check his Gmail and Notion for the necessary information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Updated Application Materials\n\nHi John,\n\nI hope you\u2019re doing well. To complete the review of your application, could you please send me the following items at your earliest convenience?\n\n\u2022 Your updated resume  \n\u2022 A list of professional references (with contact details)  \n\u2022 Copies of any recent certifications or awards\n\nYou can forward everything to sarah.thompson@techinnovations.com. Feel free to check your Gmail and Notion workspaces if you need to locate any of these documents.\n\nThank you, and let me know if you have any questions.\n\nBest regards,\n\nSarah Thompson  \nHR Representative  \nTech Innovations Inc."
+    }
+  ],
+  "final_output": "Subject: Request for Updated Application Materials\n\nHi John,\n\nI hope you\u2019re doing well. To complete the review of your application, could you please send me the following items at your earliest convenience?\n\n\u2022 Your updated resume  \n\u2022 A list of professional references (with contact details)  \n\u2022 Copies of any recent certifications or awards\n\nYou can forward everything to sarah.thompson@techinnovations.com. Feel free to check your Gmail and Notion workspaces if you need to locate any of these documents.\n\nThank you, and let me know if you have any questions.\n\nBest regards,\n\nSarah Thompson  \nHR Representative  \nTech Innovations Inc."
+}

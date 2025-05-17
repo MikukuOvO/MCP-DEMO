@@ -1,0 +1,11 @@
+{
+  "item_id": 25,
+  "user_instruction": "'Tell John to send a group email to me (all-staff@innosoft.com) containing the latest updates on our office environment and workflow changes, and remind him to review his Gmail and Notion for the necessary information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi John,\n\nCould you please send a group email to all-staff@innosoft.com with the latest updates on our office environment and workflow changes? When preparing the message, kindly review your Gmail and Notion to ensure you include all the relevant details.\n\nThank you so much!\n\nBest,\n[Your Name]"
+    }
+  ],
+  "final_output": "Hi John,\n\nCould you please send a group email to all-staff@innosoft.com with the latest updates on our office environment and workflow changes? When preparing the message, kindly review your Gmail and Notion to ensure you include all the relevant details.\n\nThank you so much!\n\nBest,\n[Your Name]"
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": 3,
+  "user_instruction": "'Tell John to compose an email to me (lisa@markethub.com) asking about potential discounts. Remind him he can check his MyDealFinder for information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi John,\n\nLisa from MarketHub asked me to reach out. She\u2019d love for you to send her a quick email (lisa@markethub.com) outlining the items you\u2019re interested in so she can look into potential discounts for you.  \nIf it helps, you can also review your current offers in MyDealFinder first\u2014there might be useful info you can include.\n\nThanks, and looking forward to hearing from you!"
+    }
+  ],
+  "final_output": "Hi John,\n\nLisa from MarketHub asked me to reach out. She\u2019d love for you to send her a quick email (lisa@markethub.com) outlining the items you\u2019re interested in so she can look into potential discounts for you.  \nIf it helps, you can also review your current offers in MyDealFinder first\u2014there might be useful info you can include.\n\nThanks, and looking forward to hearing from you!"
+}

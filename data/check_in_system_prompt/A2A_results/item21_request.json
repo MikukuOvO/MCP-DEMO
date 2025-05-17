@@ -1,0 +1,11 @@
+{
+  "item_id": 21,
+  "user_instruction": "'Tell Jane to reply to me (alex@student.university.edu) with feedback on my project. Ask her to consult her Gmail and Notion notes for the relevant information first.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Project Feedback\n\nDear Professor Jane,\n\nI hope you\u2019re doing well. I\u2019m writing on behalf of Alex (alex@student.university.edu). When you have a moment, could you please review your Gmail and Notion notes related to his work and then send him your feedback on his project? Your insights are greatly appreciated.\n\nThank you very much for your time and support.\n\nBest regards,  \n[Sent on behalf of Alex]"
+    }
+  ],
+  "final_output": "Subject: Request for Project Feedback\n\nDear Professor Jane,\n\nI hope you\u2019re doing well. I\u2019m writing on behalf of Alex (alex@student.university.edu). When you have a moment, could you please review your Gmail and Notion notes related to his work and then send him your feedback on his project? Your insights are greatly appreciated.\n\nThank you very much for your time and support.\n\nBest regards,  \n[Sent on behalf of Alex]"
+}

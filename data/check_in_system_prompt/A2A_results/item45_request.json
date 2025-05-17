@@ -1,0 +1,11 @@
+{
+  "item_id": 45,
+  "user_instruction": "'Tell Jane to reply to me (editor@vitalvoices.com) and remind her she can consult her Gmail and Notion for any information she needs.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Quick Follow-Up on Your Contribution to Vital Voices\n\nHi Jane,\n\nI hope you\u2019re doing well! When you have a moment, could you please reply directly to Mr. Thompson at editor@vitalvoices.com regarding your interview or guest article? \n\nIf you need to reference any materials or past correspondence, feel free to check your Gmail and Notion\u2014everything you might need should be there.\n\nThank you so much, and we look forward to hearing from you soon!\n\nBest regards,\n\n[Your Name]\nOn behalf of Mr. Thompson, Editor  \nVital Voices"
+    }
+  ],
+  "final_output": "Subject: Quick Follow-Up on Your Contribution to Vital Voices\n\nHi Jane,\n\nI hope you\u2019re doing well! When you have a moment, could you please reply directly to Mr. Thompson at editor@vitalvoices.com regarding your interview or guest article? \n\nIf you need to reference any materials or past correspondence, feel free to check your Gmail and Notion\u2014everything you might need should be there.\n\nThank you so much, and we look forward to hearing from you soon!\n\nBest regards,\n\n[Your Name]\nOn behalf of Mr. Thompson, Editor  \nVital Voices"
+}

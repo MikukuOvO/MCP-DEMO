@@ -1,0 +1,11 @@
+{
+  "item_id": 46,
+  "user_instruction": "'Tell Jane to send an email to me (info@rainbowfertility.com) with the details we need for our consultation. Ask her to check her Notion for information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi Jane,\n\nI hope you\u2019re doing well!  \nWhen you have a moment, could you please email us at info@rainbowfertility.com with the details we\u2019ll need to set up your initial consultation? You can find a checklist of the required information in your Notion workspace.\n\nThank you so much, and we look forward to hearing from you!\n\nWarm regards,  \nRainbow Fertility Care"
+    }
+  ],
+  "final_output": "Hi Jane,\n\nI hope you\u2019re doing well!  \nWhen you have a moment, could you please email us at info@rainbowfertility.com with the details we\u2019ll need to set up your initial consultation? You can find a checklist of the required information in your Notion workspace.\n\nThank you so much, and we look forward to hearing from you!\n\nWarm regards,  \nRainbow Fertility Care"
+}
