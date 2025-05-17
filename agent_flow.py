@@ -57,11 +57,26 @@ async def run_agent_flow(item_id, user_instruction):
             )
         )
 
+        # Read agent cards
+        card_path = f"data/agent_cards/item{item_id}_sender.json"
+        with open(card_path, "r") as f:
+            sender_card = json.load(f)
+
         # Agent that talks to Azure OpenAI
         agent = Agent(
             name="Inbox & Notion Assistant",
             instructions=(
                 f"""
+                You are an intelligent assistant serving a user. The followings are the descriptions of the user and the relationships between the user and others.
+
+                Description of the user:
+                {sender_card['description']}
+
+                Description of the relationships between the user and others:
+                {sender_card['relationship']}
+
+                Your goal is to prepare and send messages or emails on behalf of the user. The content of message or email is based on the request from others and relevant knowledge stored in the user's Gmail and Notion.
+
                 Available tools:
                 - Gmail tools (`gmail_search_messages`, `gmail_get_message`, `gamil_send_message`, `gmail_get_all_messages`) for email questions
                 - Notion tools (`NotionManagerSearchContent`, `NotionManagerReadPage`, `NotionManagerGetAllContent`) for Notion content questions.

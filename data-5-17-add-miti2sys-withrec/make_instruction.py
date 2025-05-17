@@ -1,24 +1,23 @@
 PROMPT = """
-You will receive a structured JSON object describing a communication scenario between two or more people. Each person in the scenario has a corresponding intelligent agent. The agent can read the user's emails or notion pages and send email to others. The data recipient is giving instructions to his or her agent to communicate with the data sender's agent.
+Prompt:
 
-Based on the JSON data you received (especially the "seed" and "vigenette" parts), generate a short description for the data sender's agent and the data recipient's agent respectively. The description should include the following:
+You will receive a structured JSON object describing a communication scenario between two or more people. Each person in the scenario has a corresponding intelligent agent. The agent can read the user's emails or notion pages and send email to others. The agents also know the identity and relationships of their users.The data recipient is giving instructions to his or her agent to communicate with the data sender's agent.
 
-1. The information about the user that the agent serves (including their name and role);
+Your task is to rewrite this instruction from the perspective of the data recipient, as if they were instructing their own agent to request information from the data sender's agent.
 
-2. The information about other people related to the user in the current scene, and their relationship with the user.
+Transformation requirements:
 
-Output your answer in the following JSON format, do not include any other information:
+Write from the data recipient's first-person perspective;
 
-{
-    "sender": {
-        "description": "Description of the data sender.",
-        "relationship": "Description of the relationships of the data sender."
-    },
-    "recipient": {
-        "description": "Description of the data recipient.",
-        "relationship": "Description of the relationships of the data recipient."
-    }
-}
+Use a a direct command format (e.g., "Tell John to..."), as the agent will transform it into a polite request later;
+
+Preserve the original intent and details (e.g., purpose, email, data sources like Notion);
+
+Make sure to include the data sender's name and the data recipient's email address in the instruction, but the data recipient's name should be replaced with "I" or "me";
+
+Don't introduce the relationship between them as the agent already knows it.
+
+You should directly output the paraphrased instruction without any other information.
 
 Example input:
 
@@ -59,16 +58,7 @@ Example input:
 
 Example output:
 
-{
-    "sender": {
-        "description": "John is a seasoned therapist with over ten years at the Harmony Wellness Center.",
-        "relationship": "Sarah is John's friend. She is a clinical psychologist from the Cognitive Growth Institute. They are planning to discuss the complexities of contemporary therapy methods through email."
-    },
-    "recipient": {
-        "description": "Sarah is a clinical psychologist from the Cognitive Growth Institute.",
-        "relationship": "John is Sarah's friend. He is a seasoned therapist with over ten years at the Harmony Wellness Center. They are planning to discuss the complexities of contemporary therapy methods through email."
-    }
-}
+I am Sarah, John's old friend. Tell John to send an email to me (sarah@cognitivegrowth.org) summarizing our latest discussion on therapy methods. Notice him to check out his Notion for information.
 
 """
 
@@ -81,10 +71,15 @@ model = "o3-20250416"
 def main():
     with open('data/filtered_data.json', 'r') as f:
         data = json.load(f)
-    # data = data[0: 50]
+    data = data[0: 50]
     total_items = len(data)
     print(f"Found {total_items} items to process")
-    for item in data:
+    output_file = f"data/A2A_data.json"
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+
+    new_data = data
+    for idx in range(len(data)):
+        item = data[idx]
         input_item = json.dumps(item, indent=2)
         response = get_chat_completion(
             model=model,
@@ -93,19 +88,12 @@ def main():
                 {"role": "user", "content": input_item}
             ]
         )
-        result = json.loads(response.choices[0].message.content)
-        title = item['name'].lower().replace(" ", "")
-        sender = result['sender']
-        output_file = f"data/agent_cards/{title}_sender.json"
-        os.makedirs(os.path.dirname(output_file), exist_ok=True)
-        with open(output_file, "w") as f:
-            json.dump(sender, f, indent=2)
-        recipient = result['recipient']
-        output_file = f"data/agent_cards/{title}_recipient.json"
-        os.makedirs(os.path.dirname(output_file), exist_ok=True)
-        with open(output_file, "w") as f:
-            json.dump(recipient, f, indent=2)
-    print("Agent cards generated successfully.")
+        result = response.choices[0].message.content
+        new_data[idx]['trajectory']['user_instruction'] = result
+
+    with open(output_file, "w") as f:
+        json.dump(new_data, f, indent=2)
+    print("Instructions generated successfully.")
 
 if __name__ == "__main__":
     main()
