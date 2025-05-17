@@ -1,0 +1,11 @@
+{
+  "item_id": 11,
+  "user_instruction": "'Tell Jane to send an email to me (hr@globaldynamics.com) discussing John Smith'\"'\"'s candidacy, and remind her to review her Gmail and Notion for information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for John Smith\u2019s Candidacy Details\n\nHi Jane,\n\nI hope you\u2019re doing well. Could you please send an email to hr@globaldynamics.com outlining your assessment of John Smith\u2019s suitability for the role at Tech Innovations? \n\nWhen preparing the summary, kindly review any relevant information in your Gmail and Notion to ensure we have the most up-to-date insights.\n\nThank you very much for your time and assistance. I look forward to hearing from you soon.\n\nBest regards,\n\n[Your Name]\nHR Department  \nGlobal Dynamics"
+    }
+  ],
+  "final_output": "Subject: Request for John Smith\u2019s Candidacy Details\n\nHi Jane,\n\nI hope you\u2019re doing well. Could you please send an email to hr@globaldynamics.com outlining your assessment of John Smith\u2019s suitability for the role at Tech Innovations? \n\nWhen preparing the summary, kindly review any relevant information in your Gmail and Notion to ensure we have the most up-to-date insights.\n\nThank you very much for your time and assistance. I look forward to hearing from you soon.\n\nBest regards,\n\n[Your Name]\nHR Department  \nGlobal Dynamics"
+}

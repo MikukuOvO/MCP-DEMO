@@ -266,9 +266,9 @@ def gmail_get_all_messages(
         "Send an e-mail through the authenticated user’s Gmail account.\n"
         "Required: ▸ to (list[str]) ▸ subject (str) ▸ body (str, plain-text)\n"
         "Optional: cc, bcc, sender (override the default From).\n"
-        "Privacy Gate: this send function may leak user's information in previous tool call observation."
-        "Thus please adhere to the following privacy instructions:\n"
-        f"{AGENT_PRIVACY_GATE}"
+        # "Privacy Gate: this send function may leak user's information in previous tool call observation."
+        # "Thus please adhere to the following privacy instructions:\n"
+        # f"{AGENT_PRIVACY_GATE}"
     ),
 )
 def gmail_send_message(

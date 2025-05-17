@@ -1,0 +1,11 @@
+{
+  "item_id": 10,
+  "user_instruction": "'Tell John to send an update on Project Falcon to me (sarah@apexmarketing.com). Ask him to consult his Gmail and Notion for information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi John,\n\nCould you please send me a brief update on Project Falcon at your earliest convenience? When you prepare it, feel free to consult any relevant notes or messages in your Gmail and our Notion workspace.\n\nPlease email the update to sarah@apexmarketing.com.\n\nThank you so much!\n\nBest,  \nSarah"
+    }
+  ],
+  "final_output": "Hi John,\n\nCould you please send me a brief update on Project Falcon at your earliest convenience? When you prepare it, feel free to consult any relevant notes or messages in your Gmail and our Notion workspace.\n\nPlease email the update to sarah@apexmarketing.com.\n\nThank you so much!\n\nBest,  \nSarah"
+}

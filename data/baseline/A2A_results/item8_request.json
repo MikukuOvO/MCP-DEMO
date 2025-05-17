@@ -1,0 +1,11 @@
+{
+  "item_id": 8,
+  "user_instruction": "'Tell John to send an email to me (hiring@innovatex.com) detailing his salary expectations for the lead developer position, and tell him to consult his Gmail and Notion for any relevant information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Your Salary Expectations\n\nHi John,\n\nI hope you\u2019re doing well. Could you please email me at hiring@innovatex.com with a brief outline of your salary expectations for the Lead Developer position? Feel free to consult your Gmail and Notion for any details that might help you frame your response.\n\nThank you, and I look forward to hearing from you soon!\n\nBest regards,  \nAlex Rivera  \nTalent Acquisition | InnovateX"
+    }
+  ],
+  "final_output": "Subject: Request for Your Salary Expectations\n\nHi John,\n\nI hope you\u2019re doing well. Could you please email me at hiring@innovatex.com with a brief outline of your salary expectations for the Lead Developer position? Feel free to consult your Gmail and Notion for any details that might help you frame your response.\n\nThank you, and I look forward to hearing from you soon!\n\nBest regards,  \nAlex Rivera  \nTalent Acquisition | InnovateX"
+}

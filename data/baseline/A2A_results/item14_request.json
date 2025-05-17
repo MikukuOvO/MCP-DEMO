@@ -1,0 +1,11 @@
+{
+  "item_id": 14,
+  "user_instruction": "'Tell Jane to send an email to me (contact@vitalitypartners.com) with an update on OptiLife\u2019s HealthHub requirements, and remind her she can review her Gmail and Notion for the necessary information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi Jane,\n\nCould you please send an update on OptiLife\u2019s HealthHub requirements to contact@vitalitypartners.com at your earliest convenience? If you need to reference any previous notes or communications, feel free to review your Gmail and Notion workspaces\u2014they should have all the relevant details.\n\nThanks very much for your help!\n\nBest regards,  \n[Your Name]  \nVitality Partners"
+    }
+  ],
+  "final_output": "Hi Jane,\n\nCould you please send an update on OptiLife\u2019s HealthHub requirements to contact@vitalitypartners.com at your earliest convenience? If you need to reference any previous notes or communications, feel free to review your Gmail and Notion workspaces\u2014they should have all the relevant details.\n\nThanks very much for your help!\n\nBest regards,  \n[Your Name]  \nVitality Partners"
+}

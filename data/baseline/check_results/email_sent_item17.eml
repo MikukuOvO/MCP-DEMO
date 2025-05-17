@@ -1,0 +1,45 @@
+To: contact@medtechsolutions.com
+Subject: Greenleaf Health Center – Needs for Upcoming Software Release
+Date: 12ad3e2a-f6c8-474b-9f08-9b85d622d409
+Message-ID: <430be96e-7ced-4fb8-9e08-08eac21d67f4@example.com>
+Content-Type: text/plain; charset="UTF-8"
+
+Hi MedTech Solutions Team,
+
+I hope you’re doing well. As we prepare for your next software release (currently slated for April 15, 2025), I wanted to share Greenleaf Health Center’s key needs and considerations so that we can ensure a smooth transition for both our staff and patients.
+
+1. Downtime & Scheduling
+•  Preferred maintenance window: Friday 10:00 p.m.–12:00 a.m. ET (or another late-evening, low-volume slot)
+•  Please provide at least 48-hours advance notice of any planned outage and a real-time status page link.
+
+2. Data Security & Compliance
+•  Confirmation that all PHI remains encrypted in transit and at rest post-upgrade
+•  Full system backup immediately before the upgrade with a rapid rollback option if needed
+•  Updated HIPAA compliance summary or attestation for our records
+
+3. New Feature Enablement
+•  Wait-list/standby scheduling so cancelled slots can be auto-offered to patients
+•  Bulk SMS reminders directly through the scheduling interface (Twilio or native gateway)
+•  Enhanced reporting: ability to schedule recurring PDF/CSV exports of daily appointment lists and monthly KPI dashboards
+•  Expanded role-based permissions and detailed audit logs for user activity
+
+4. Training & Documentation
+•  30-minute onboarding webinar for front-desk staff plus short video tutorials
+•  Quick-start guide (1–2 pages) highlighting any workflow changes
+•  Access to a sandbox/demo environment at least one week prior to go-live so we can test new features with mock data
+
+5. Post-Release Support
+•  Dedicated contact (or ticket queue) for the first two business days after launch
+•  Expected first-response and resolution SLAs during this hyper-care period
+
+These points are based on internal discussions and notes in our workspace (“Upcoming Software Update – MedTech Solutions,” 16 May 2025). Please review and let me know if anything requires clarification, or if additional information would be helpful for your team.
+
+Thank you for your partnership, and we look forward to the new capabilities.
+
+Best regards,
+
+Jane Smith
+Medical Administrative Assistant
+Greenleaf Health Center
+Phone: (555) 123-4567
+Email: jane@greenleafhc.com

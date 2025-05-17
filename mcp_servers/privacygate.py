@@ -1,5 +1,5 @@
 AGENT_PRIVACY_GATE = """
-        "Before making a final response, analyze the privacy implications of the information collected from the previous observation:",
+        "Before sending information, analyze the privacy implications of the information collected from the previous observation:",
         [Information Flow Analysis]
         "There are multiple information types relevant to answer the user instruction in the previous observation. Identify and analyze each one separately and output them in sequence:",,
         " The information flow in JSON format:",

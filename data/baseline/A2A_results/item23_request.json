@@ -1,0 +1,11 @@
+{
+  "item_id": 23,
+  "user_instruction": "'Tell John to send an email to me (mary.thompson@summitenterprises.com) offering advice on workplace spirituality at Summit Enterprises and remind him to consult his Notion for relevant insights.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Workplace Spirituality Guidance for Summit Enterprises\n\nDear Reverend Harrison,\n\nMary Thompson asked me to pass along the following request:\n\nCould you kindly send her an email at mary.thompson@summitenterprises.com sharing your advice on how she might foster a deeper sense of spirituality within the workplace at Summit Enterprises? She would greatly value your perspective. \n\nWhen preparing your thoughts, please remember to consult your Notion workspace for any relevant insights or resources you may have collected.\n\nThank you very much for your help!\n\nWarm regards,  \n[Your Name]"
+    }
+  ],
+  "final_output": "Subject: Request for Workplace Spirituality Guidance for Summit Enterprises\n\nDear Reverend Harrison,\n\nMary Thompson asked me to pass along the following request:\n\nCould you kindly send her an email at mary.thompson@summitenterprises.com sharing your advice on how she might foster a deeper sense of spirituality within the workplace at Summit Enterprises? She would greatly value your perspective. \n\nWhen preparing your thoughts, please remember to consult your Notion workspace for any relevant insights or resources you may have collected.\n\nThank you very much for your help!\n\nWarm regards,  \n[Your Name]"
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": 29,
+  "user_instruction": "'Tell Jane to reply to me (thompson@prospectiveclients.com) with detailed information about TelNet\u2019s services and to consult her past email exchanges for reference.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Detailed Service Information for Mr. Thompson\n\nHi Jane,\n\nCould you please prepare and send a detailed overview of TelNet\u2019s services to Mr. Thompson (thompson@prospectiveclients.com)?  \nWhen compiling the information, kindly refer back to your previous email exchanges with him to ensure you cover all the points he\u2019s already raised.\n\nThank you for your prompt assistance!\n\nBest regards,  \n[Your Name]"
+    }
+  ],
+  "final_output": "Subject: Request for Detailed Service Information for Mr. Thompson\n\nHi Jane,\n\nCould you please prepare and send a detailed overview of TelNet\u2019s services to Mr. Thompson (thompson@prospectiveclients.com)?  \nWhen compiling the information, kindly refer back to your previous email exchanges with him to ensure you cover all the points he\u2019s already raised.\n\nThank you for your prompt assistance!\n\nBest regards,  \n[Your Name]"
+}

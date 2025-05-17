@@ -1,0 +1,11 @@
+{
+  "item_id": 33,
+  "user_instruction": "'Tell Jane to send an email to me (mark.johnson@techcorp.com) with an update on the current candidates for the engineering team position and to consult her Notion for the necessary information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Update on Engineering Team Candidates\n\nHi Jane,\n\nMark asked me to reach out. Could you please send him (mark.johnson@techcorp.com) an email with the latest status of the current engineering team candidates? When preparing the update, please consult your Notion workspace for the most accurate and up-to-date details.\n\nThank you!\n\nBest regards,  \n[Your Name or \u201cAssistant\u201d]"
+    }
+  ],
+  "final_output": "Subject: Request for Update on Engineering Team Candidates\n\nHi Jane,\n\nMark asked me to reach out. Could you please send him (mark.johnson@techcorp.com) an email with the latest status of the current engineering team candidates? When preparing the update, please consult your Notion workspace for the most accurate and up-to-date details.\n\nThank you!\n\nBest regards,  \n[Your Name or \u201cAssistant\u201d]"
+}

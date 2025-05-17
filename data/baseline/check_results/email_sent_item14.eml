@@ -1,0 +1,57 @@
+To: contact@vitalitypartners.com
+Subject: OptiLife – Updated HealthHub Requirements
+Date: b2532f0b-0cc4-4da3-ad02-1e71949611fc
+Message-ID: <1ab84f76-2f7f-4d84-b6eb-18ccf6467aaf@example.com>
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Team,
+
+As requested, please find below our consolidated list of requirements and priorities for the OptiLife HealthHub implementation. The points combine our internal notes (see HealthHub Requirements page in our shared Notion workspace) and the questions that have surfaced in recent conversations.
+
+1. Seamless Integration
+•  Must plug into our existing OptiLife wellness ecosystem and single sign-on (SSO) infrastructure.
+•  API access for automatic import of step-count, heart-rate and nutrition data from the devices we currently subsidise (Fitbit, Apple Health, Garmin Connect).
+
+2. Core Functionality for Employees
+•  Tracking of individual goals (weight, steps, sleep, stress-reduction, nutrition).
+•  AI-driven personalised health insights that surface weekly "nudges" and recommended micro-goals.
+•  Library of company-branded wellness challenges. Initial launch requires: 10k Steps Challenge, Mindful March meditation series, Healthy Eating Bingo.
+•  Social and peer-to-peer features (leader boards, virtual high-fives, team challenges).
+
+3. Administration & Reporting
+•  Real-time dashboard for HR/Wellness team to monitor aggregate participation, engagement and outcome trends.
+•  Ability to export anonymised data to CSV/Excel and directly to our BI tool (Looker).
+•  Automated monthly PDF summary that highlights participation %, average goal-completion rate and notable milestones.
+
+4. Incentive & Rewards Engine
+•  Rules-based engine that attributes points to activities and allows redemption for gift cards or health-premium credits.
+•  Needs to honour OptiLife’s existing tier structure (Bronze/Silver/Gold) and roll over unused points annually.
+
+5. Compliance & Data Privacy
+•  HIPAA compliant hosting; GDPR alignment for our EU employees.
+•  Data encryption at rest and in transit. Role-based access controls.
+•  Written BAA (Business Associate Agreement) with Vitality Partners before go-live.
+
+6. Scalability & Performance
+•  Must comfortably support an active user base of ~1,200 employees in year one, with headroom to 3,000.
+•  Target <2 second average page-load time on both web and mobile apps.
+
+7. Support & Training
+•  Dedicated Customer Success Manager.
+•  Four 1-hour virtual training sessions for HR/Wellness ambassadors during the pilot.
+•  24 × 7 e-mail support; business-hours phone support.
+
+8. Implementation Timeline (proposed)
+•  Requirements sign-off: 30 May 2025
+•  Dev & configuration: 3 Jun – 31 Jul 2025
+•  Pilot with 100 employees: 5 Aug – 29 Aug 2025
+•  Company-wide launch: 16 Sep 2025
+
+Please review and let us know if you need clarification or if any of these items should be reprioritised. We are happy to jump on a call to walk through the list.
+
+Thanks for your partnership!
+
+Best regards,
+Jane Doe
+Health Program Coordinator | OptiLife Inc.
+jane.doe@optilife.com

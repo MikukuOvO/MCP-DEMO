@@ -1,0 +1,11 @@
+{
+  "item_id": 32,
+  "user_instruction": "'Tell Jane to send me (selectionsyndicate@techforward.com) an update on the candidate assessments and check her Notion for information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Updated Candidate Assessments\n\nHi Jane,\n\nHope you\u2019re doing well.\n\nWhen you have a moment, could you please:\n\n1. Send the Selection Syndicate (selectionsyndicate@techforward.com) your latest update on all candidate assessments.\n2. Review your Notion workspace to ensure the information is complete and up to date before sending.\n\nLet us know if you need anything from us. Thanks for your help!\n\nBest regards,  \n[Your Name]  \nOn behalf of The Selection Syndicate"
+    }
+  ],
+  "final_output": "Subject: Request for Updated Candidate Assessments\n\nHi Jane,\n\nHope you\u2019re doing well.\n\nWhen you have a moment, could you please:\n\n1. Send the Selection Syndicate (selectionsyndicate@techforward.com) your latest update on all candidate assessments.\n2. Review your Notion workspace to ensure the information is complete and up to date before sending.\n\nLet us know if you need anything from us. Thanks for your help!\n\nBest regards,  \n[Your Name]  \nOn behalf of The Selection Syndicate"
+}

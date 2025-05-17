@@ -1,0 +1,11 @@
+{
+  "item_id": 1,
+  "user_instruction": "'Tell John to send me an email at sarah@cognitivegrowth.org summarizing our latest discussion on therapy methods and remind him to consult his Notion for the relevant information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi John,\n\nI hope you\u2019re doing well. Would you mind sending me an email at sarah@cognitivegrowth.org with a brief summary of our most recent discussion on contemporary therapy methods? When you prepare the summary, please remember to consult your Notion workspace for any pertinent notes or details.\n\nThanks so much, and talk to you soon!\n\nBest,\nSarah"
+    }
+  ],
+  "final_output": "Hi John,\n\nI hope you\u2019re doing well. Would you mind sending me an email at sarah@cognitivegrowth.org with a brief summary of our most recent discussion on contemporary therapy methods? When you prepare the summary, please remember to consult your Notion workspace for any pertinent notes or details.\n\nThanks so much, and talk to you soon!\n\nBest,\nSarah"
+}

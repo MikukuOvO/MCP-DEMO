@@ -1,0 +1,11 @@
+{
+  "item_id": 22,
+  "user_instruction": "'Tell Jane to reply to me (mark@baxterassociates.com) with guidance on the procedural matter, and have her consult her Gmail and Notion for any helpful information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Procedural Guidance\n\nHi Jane,\n\nI hope you\u2019re doing well. I\u2019m currently examining a procedural strategy and would really appreciate any insights you might be able to share. When you have a moment, could you please consult your Gmail and Notion for any notes or references that might be helpful? \n\nWhenever it\u2019s convenient, I\u2019d be grateful if you could reply directly to me at mark@baxterassociates.com with your thoughts.\n\nThank you so much for your time and assistance.\n\nBest regards,\n\nMark"
+    }
+  ],
+  "final_output": "Subject: Request for Procedural Guidance\n\nHi Jane,\n\nI hope you\u2019re doing well. I\u2019m currently examining a procedural strategy and would really appreciate any insights you might be able to share. When you have a moment, could you please consult your Gmail and Notion for any notes or references that might be helpful? \n\nWhenever it\u2019s convenient, I\u2019d be grateful if you could reply directly to me at mark@baxterassociates.com with your thoughts.\n\nThank you so much for your time and assistance.\n\nBest regards,\n\nMark"
+}

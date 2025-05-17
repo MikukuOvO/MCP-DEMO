@@ -1,0 +1,11 @@
+{
+  "item_id": 46,
+  "user_instruction": "'Tell Jane to send an email to me (info@rainbowfertility.com) with the details we need for our consultation. Ask her to check her Notion for information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi Jane,\n\nI hope you\u2019re well! To help us prepare for your initial consultation, could you please send an email to info@rainbowfertility.com with the following details?\n\n\u2022 Your and your partner\u2019s full names (and pronouns)  \n\u2022 Preferred contact information  \n\u2022 A brief summary of your fertility goals and any previous treatments or evaluations  \n\u2022 Preferred dates/times for an appointment  \n\u2022 Any other information you\u2019d like us to know in advance  \n\nWhen you have a moment, please also check your Notion workspace\u2014there\u2019s a short questionnaire and some additional resources there that will guide you through the information we\u2019ll need.\n\nThank you so much! We look forward to supporting you on your journey.\n\nWarm regards,  \n[Your Name]  \nRainbow Fertility Care"
+    }
+  ],
+  "final_output": "Hi Jane,\n\nI hope you\u2019re well! To help us prepare for your initial consultation, could you please send an email to info@rainbowfertility.com with the following details?\n\n\u2022 Your and your partner\u2019s full names (and pronouns)  \n\u2022 Preferred contact information  \n\u2022 A brief summary of your fertility goals and any previous treatments or evaluations  \n\u2022 Preferred dates/times for an appointment  \n\u2022 Any other information you\u2019d like us to know in advance  \n\nWhen you have a moment, please also check your Notion workspace\u2014there\u2019s a short questionnaire and some additional resources there that will guide you through the information we\u2019ll need.\n\nThank you so much! We look forward to supporting you on your journey.\n\nWarm regards,  \n[Your Name]  \nRainbow Fertility Care"
+}

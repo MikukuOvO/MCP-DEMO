@@ -1,0 +1,11 @@
+{
+  "item_id": 26,
+  "user_instruction": "'Tell John to send me an update about how the wellness program is going and to check his Notion for information. Have him email me at angela.richardson@zenithglobal.com.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Wellness Program Update Needed\n\nHi John,\n\nCould you please send me an update on how the wellness program is progressing? When you prepare the summary, kindly check your Notion workspace for any relevant information that should be included.\n\nPlease email the update to me at angela.richardson@zenithglobal.com at your earliest convenience.\n\nThank you!\n\nBest regards,\n\nAngela Richardson\nWellness Outreach Team Lead"
+    }
+  ],
+  "final_output": "Subject: Wellness Program Update Needed\n\nHi John,\n\nCould you please send me an update on how the wellness program is progressing? When you prepare the summary, kindly check your Notion workspace for any relevant information that should be included.\n\nPlease email the update to me at angela.richardson@zenithglobal.com at your earliest convenience.\n\nThank you!\n\nBest regards,\n\nAngela Richardson\nWellness Outreach Team Lead"
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": 13,
+  "user_instruction": "'Tell Jane to send an email to me (mark.thompson@email.com) with some wellness tips. Tell her she can check her NotionManager for information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Wellness Tips Email\n\nHi Jane,\n\nMark asked me to reach out. When you have a moment, could you please send an email to him (mark.thompson@email.com) with some wellness tips? Feel free to consult your NotionManager for any relevant information or resources.\n\nThank you for your help!\n\nBest regards,  \n[Your Name / Assistant]"
+    }
+  ],
+  "final_output": "Subject: Request for Wellness Tips Email\n\nHi Jane,\n\nMark asked me to reach out. When you have a moment, could you please send an email to him (mark.thompson@email.com) with some wellness tips? Feel free to consult your NotionManager for any relevant information or resources.\n\nThank you for your help!\n\nBest regards,  \n[Your Name / Assistant]"
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": 20,
+  "user_instruction": "'Tell Jane to send out this month'\"'\"'s company newsletter to me (employees@quantuminnovations.com). Instruct her to consult her Gmail and Notion for the necessary information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi Jane,\n\nCould you please send out this month\u2019s company newsletter to employees@quantuminnovations.com at your earliest convenience? When assembling the newsletter, kindly refer to the relevant materials in your Gmail and our Notion workspace to ensure all the latest updates are included.\n\nThank you very much for your help!\n\nBest regards,  \n[Your Name]  \n(On behalf of all Quantum Innovations employees)"
+    }
+  ],
+  "final_output": "Hi Jane,\n\nCould you please send out this month\u2019s company newsletter to employees@quantuminnovations.com at your earliest convenience? When assembling the newsletter, kindly refer to the relevant materials in your Gmail and our Notion workspace to ensure all the latest updates are included.\n\nThank you very much for your help!\n\nBest regards,  \n[Your Name]  \n(On behalf of all Quantum Innovations employees)"
+}

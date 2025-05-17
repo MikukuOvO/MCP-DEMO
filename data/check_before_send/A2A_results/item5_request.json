@@ -1,0 +1,11 @@
+{
+  "item_id": 5,
+  "user_instruction": "'Tell John to send me (sarah.connor@investments.com) a summary of our discussion from the Global Business Hub meeting, and remind him to review his Notion for the details.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Summary of Global Business Hub Meeting\n\nHi John,\n\nI hope you\u2019re doing well. Could you please send me (sarah.connor@investments.com) a concise summary of our discussion from the Global Business Hub meeting at your earliest convenience?  \nAlso, when you have a moment, please review your notes in Notion for the detailed points we covered.\n\nThank you so much!\n\nBest,  \nSarah"
+    }
+  ],
+  "final_output": "Subject: Request for Summary of Global Business Hub Meeting\n\nHi John,\n\nI hope you\u2019re doing well. Could you please send me (sarah.connor@investments.com) a concise summary of our discussion from the Global Business Hub meeting at your earliest convenience?  \nAlso, when you have a moment, please review your notes in Notion for the detailed points we covered.\n\nThank you so much!\n\nBest,  \nSarah"
+}

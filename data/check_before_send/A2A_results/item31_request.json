@@ -1,0 +1,11 @@
+{
+  "item_id": 31,
+  "user_instruction": "'Tell John to reply to me (sarah@advantagemedia.com) with customer insights that can help with our marketing campaign, and remind him to check his Gmail for the necessary information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Customer Insights for Upcoming Campaign  \n\nHi John,\n\nI hope you\u2019re doing well. Could you please share any customer insights or data that might help us shape AdVantage Media\u2019s upcoming marketing campaign? When convenient, kindly reply directly to me at sarah@advantagemedia.com so we can incorporate the information into our strategy.\n\nAlso, please take a moment to check your Gmail inbox\u2014there\u2019s some additional context there that should be useful.\n\nThank you in advance for your support. Looking forward to hearing from you soon.\n\nBest regards,  \nSarah Thompson  \nCampaign Strategist  \nAdVantage Media"
+    }
+  ],
+  "final_output": "Subject: Request for Customer Insights for Upcoming Campaign  \n\nHi John,\n\nI hope you\u2019re doing well. Could you please share any customer insights or data that might help us shape AdVantage Media\u2019s upcoming marketing campaign? When convenient, kindly reply directly to me at sarah@advantagemedia.com so we can incorporate the information into our strategy.\n\nAlso, please take a moment to check your Gmail inbox\u2014there\u2019s some additional context there that should be useful.\n\nThank you in advance for your support. Looking forward to hearing from you soon.\n\nBest regards,  \nSarah Thompson  \nCampaign Strategist  \nAdVantage Media"
+}

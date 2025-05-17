@@ -1,0 +1,11 @@
+{
+  "item_id": 37,
+  "user_instruction": "'Tell John to reply to me (sarah@quantuminnovations.com) with his input on the \u201cQuantum Cohesion 2023\u201d retreat, and remind him to check his Gmail and Notion for the relevant information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Your Input Needed for \u201cQuantum Cohesion 2023\u201d Retreat\n\nHi John,\n\nHope you\u2019re doing well! As we finalize plans for the \u201cQuantum Cohesion 2023\u201d retreat, could you please share your thoughts and any suggestions you have? When you have a moment, kindly reply to me at sarah@quantuminnovations.com.\n\nAll the background materials are in your Gmail and on the Social Committee workspace in Notion, so feel free to review those before sending your feedback.\n\nThanks a lot for your help!\n\nBest,\nSarah"
+    }
+  ],
+  "final_output": "Subject: Your Input Needed for \u201cQuantum Cohesion 2023\u201d Retreat\n\nHi John,\n\nHope you\u2019re doing well! As we finalize plans for the \u201cQuantum Cohesion 2023\u201d retreat, could you please share your thoughts and any suggestions you have? When you have a moment, kindly reply to me at sarah@quantuminnovations.com.\n\nAll the background materials are in your Gmail and on the Social Committee workspace in Notion, so feel free to review those before sending your feedback.\n\nThanks a lot for your help!\n\nBest,\nSarah"
+}

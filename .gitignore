@@ -10,3 +10,5 @@ data/converted/item*/*.md
 token.json
 credentials.json
 cloudgpt-apim-token-cache.bin
+!data/baseline/**
+!data/check_before_send/**

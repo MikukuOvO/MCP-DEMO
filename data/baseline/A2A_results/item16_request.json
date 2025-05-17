@@ -1,0 +1,11 @@
+{
+  "item_id": 16,
+  "user_instruction": "'Tell Jane to prepare a detailed performance and budget report for me (mark@optitech.solutions). Instruct her to review her Gmail and Notion for the necessary information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Subject: Request for Detailed Performance & Budget Report\n\nHi Jane,\n\nI hope you\u2019re doing well.  \nCould you please prepare a detailed performance and budget report for the Software Development department? When compiling the data, kindly review any relevant information in your Gmail and our shared Notion workspace to ensure everything is up to date and comprehensive.\n\nPlease let me know if you need any clarifications or additional inputs.\n\nThank you very much for your help!\n\nBest regards,  \nMark  \nHead of Software Development  \nmark@optitech.solutions"
+    }
+  ],
+  "final_output": "Subject: Request for Detailed Performance & Budget Report\n\nHi Jane,\n\nI hope you\u2019re doing well.  \nCould you please prepare a detailed performance and budget report for the Software Development department? When compiling the data, kindly review any relevant information in your Gmail and our shared Notion workspace to ensure everything is up to date and comprehensive.\n\nPlease let me know if you need any clarifications or additional inputs.\n\nThank you very much for your help!\n\nBest regards,  \nMark  \nHead of Software Development  \nmark@optitech.solutions"
+}

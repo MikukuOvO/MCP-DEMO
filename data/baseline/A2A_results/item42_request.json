@@ -1,0 +1,11 @@
+{
+  "item_id": 42,
+  "user_instruction": "'Tell John to send an email to me (feedback@medtechinnovations.com) with his thoughts on the new patient management system, and remind him to check his Notion for information.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi John,\n\nI hope you\u2019re doing well. When you have a moment, could you please send your thoughts and any detailed feedback on the new patient management system to feedback@medtechinnovations.com? Your insights are invaluable to us as we continue refining the platform.\n\nAlso, please remember to review the relevant notes and updates in your Notion workspace beforehand\u2014it should contain the latest information you\u2019ll need.\n\nThanks so much for your time and help.\n\nBest regards,  \n[Your Name]  \nMedTech Innovations"
+    }
+  ],
+  "final_output": "Hi John,\n\nI hope you\u2019re doing well. When you have a moment, could you please send your thoughts and any detailed feedback on the new patient management system to feedback@medtechinnovations.com? Your insights are invaluable to us as we continue refining the platform.\n\nAlso, please remember to review the relevant notes and updates in your Notion workspace beforehand\u2014it should contain the latest information you\u2019ll need.\n\nThanks so much for your time and help.\n\nBest regards,  \n[Your Name]  \nMedTech Innovations"
+}

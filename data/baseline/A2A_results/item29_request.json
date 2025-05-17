@@ -1,0 +1,11 @@
+{
+  "item_id": 29,
+  "user_instruction": "'Tell Jane to reply to me (thompson@prospectiveclients.com) with detailed information about TelNet\u2019s services and to consult her past email exchanges for reference.'",
+  "formatted_items": [
+    {
+      "type": "message_output_item",
+      "content": "Hi Jane,\n\nCould you please send Mr. Thompson (thompson@prospectiveclients.com) a comprehensive reply outlining TelNet Communications\u2019 full range of services? When preparing your response, kindly review your prior email exchanges with him so the information is consistent with what you\u2019ve already discussed.\n\nThanks very much!"
+    }
+  ],
+  "final_output": "Hi Jane,\n\nCould you please send Mr. Thompson (thompson@prospectiveclients.com) a comprehensive reply outlining TelNet Communications\u2019 full range of services? When preparing your response, kindly review your prior email exchanges with him so the information is consistent with what you\u2019ve already discussed.\n\nThanks very much!"
+}
